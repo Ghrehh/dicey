@@ -32,8 +32,8 @@ class Dicey():
 		GOX = 175
 		GOY = 250
 
-		GO1_BUTTON = pygame.image.load('go.png')
-		GO2_BUTTON = pygame.image.load('go2.png')
+		GO1_BUTTON = pygame.image.load('pictures/go.png')
+		GO2_BUTTON = pygame.image.load('pictures/go2.png')
 		BOXRECT = pygame.Rect(GOX, GOY, 50, 50)
 
 		###
@@ -49,8 +49,8 @@ class Dicey():
 			ICON_100_X = 0
 			ICON_100_Y = 275
 
-		ICON_100 = pygame.image.load('100_icon_on.png')
-		ICON_100_H = pygame.image.load('100_icon_on_highlight.png')
+		ICON_100 = pygame.image.load('pictures/100_icon_on.png')
+		ICON_100_H = pygame.image.load('pictures/100_icon_on_highlight.png')
 
 		self.ICON_100_HOVER = False
 
@@ -66,8 +66,8 @@ class Dicey():
 			ICON_DICE_X = 26
 			ICON_DICE_Y = 275
 
-		ICON_DICE = pygame.image.load('dice_icon_on.png')
-		ICON_DICE_H = pygame.image.load('dice_icon_on_highlight.png')
+		ICON_DICE = pygame.image.load('pictures/dice_icon_on.png')
+		ICON_DICE_H = pygame.image.load('pictures/dice_icon_on_highlight.png')
 
 		self.ICON_DICE_HOVER = False
 
@@ -83,8 +83,8 @@ class Dicey():
 			ICON_COIN_X = 52
 			ICON_COIN_Y = 275
 
-		ICON_COIN = pygame.image.load('coin_icon_on.png')	
-		ICON_COIN_H = pygame.image.load('coin_icon_on_highlight.png')
+		ICON_COIN = pygame.image.load('pictures/coin_icon_on.png')	
+		ICON_COIN_H = pygame.image.load('pictures/coin_icon_on_highlight.png')
 
 		self.ICON_COIN_HOVER = False
 
@@ -111,9 +111,20 @@ class Dicey():
 				self.hover = True
 
 			if (self.hover == True) and (self.mouseClicked == True):
-				self.rando = randint(1,6)
+				if self.current_mode == "dice":
+					self.rando = randint(1,6)
+					self.text = self.font.render(str(self.rando), True, (0, 128, 0))
+				if self.current_mode == "100":
+					self.rando = randint(1,100)
+					self.text = self.font.render(str(self.rando), True, (0, 128, 0))
+				if self.current_mode == "coin":
+					self.rando = randint(1,2)
+					if self.rando == 1:
+						self.text = self.font.render("H", True, (0, 128, 0))
+					else:
+						self.text = self.font.render("T", True, (0, 128, 0))
 
-				self.text = self.font.render(str(self.rando), True, (0, 128, 0))
+
 
 
 			self.ICON_100_HOVER = False
