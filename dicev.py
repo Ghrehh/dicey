@@ -19,7 +19,7 @@ mousey = 0 # used to store y coordinate of mouse event
 
 
 def main():
-    global DISPLAYSURF, clock, text, font
+    global DISPLAYSURF, clock, text, font, mouseClicked
     pygame.init()
 
     rando = 6
@@ -49,10 +49,12 @@ def main():
 
         if (hover == True) and (mouseClicked == True):
             rando = randint(1,6)
+
             text = font.render(str(rando), True, (0, 128, 0))
 
-
         draw(hover)
+
+
 
 
 def draw(hover):
@@ -60,6 +62,17 @@ def draw(hover):
     pygame.draw.rect(DISPLAYSURF, dark_green, pygame.Rect(0, 250, 400, 50))
 
     DISPLAYSURF.blit(text,(160 , 60))
+    count = 6
+    if (hover == True) and (mouseClicked == True):
+        while count >= 0:
+            DISPLAYSURF.fill((204, 255, 204)) 
+            textx = font.render(str(count), True, (0, 128, 0))
+            DISPLAYSURF.blit(textx,(160 , 60))
+            pygame.draw.rect(DISPLAYSURF, dark_green, pygame.Rect(0, 250, 400, 50))
+            DISPLAYSURF.blit(go2_button, (gox, goy))
+            count -=1
+            pygame.display.update()
+            clock.tick(30)
 
     if hover:
         DISPLAYSURF.blit(go2_button, (gox, goy))
@@ -68,6 +81,8 @@ def draw(hover):
 
     pygame.display.update()
     clock.tick(30)
+
+
 
 
 main()
